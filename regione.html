@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Regione — Programma vs Realtà</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <nav class="regnav" id="regnav"><!-- popolata da app.js --></nav>
+
+  <div class="wrap">
+    <header class="dash">
+      <div class="stemma" id="stemma"></div>
+      <h1 id="h1"></h1>
+      <p class="sub" id="sub"></p>
+      <p class="meta" id="meta"></p>
+      <span class="pres" id="pres"></span>
+    </header>
+
+    <div class="stats" id="stats"><!-- conteggi per stato, cliccabili --></div>
+
+    <div class="tools">
+      <input type="search" id="search" placeholder="Cerca indicatore…">
+      <div class="chips" id="chips"><!-- filtri per area --></div>
+    </div>
+    <p class="hint" id="hint"></p>
+
+    <main class="grid" id="grid"><!-- schede KPI --></main>
+
+    <footer id="footer"></footer>
+  </div>
+
+  <!-- Dati: un file per Regione (tutti inclusi, il motore usa solo quello richiesto da ?r=) -->
+  <script src="data/piemonte.js"></script>
+  <script src="data/valledaosta.js"></script>
+  <script src="data/lombardia.js"></script>
+  <script src="data/trentinoaltoadige.js"></script>
+  <script src="data/veneto.js"></script>
+  <script src="data/friuliveneziagiulia.js"></script>
+  <script src="data/liguria.js"></script>
+  <script src="data/emiliaromagna.js"></script>
+  <script src="data/toscana.js"></script>
+  <script src="data/umbria.js"></script>
+  <script src="data/marche.js"></script>
+  <script src="data/lazio.js"></script>
+  <script src="data/abruzzo.js"></script>
+  <script src="data/molise.js"></script>
+  <script src="data/campania.js"></script>
+  <script src="data/puglia.js"></script>
+  <script src="data/basilicata.js"></script>
+  <script src="data/calabria.js"></script>
+  <script src="data/sicilia.js"></script>
+  <script src="data/sardegna.js"></script>
+  <!-- Motore -->
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Regioni Tracker — Programma vs Realtà</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="hub-hero">
+      <div class="stemma">🇮🇹</div>
+      <h1>Regioni Tracker — Programma vs Realtà</h1>
+      <p class="sub">
+        Per ogni Regione italiana, 6 indicatori (4 comuni a tutte — Sanità, Sicurezza, Lavoro, Ambiente —
+        e 2 legati alle priorità del programma della giunta in carica) confrontati con i dati ufficiali più recenti.
+      </p>
+      <p class="meta">
+        Fonti principali: Ministero della Salute / Agenas, ISTAT, ISPRA, Ministero dell'Interno.
+        <b>Il valore è misurato; lo «stato» è una valutazione. Correlazione ≠ causalità.</b>
+      </p>
+    </header>
+
+    <main id="hub"><!-- popolato da app.js --></main>
+
+    <footer>
+      <p><b>Nota metodologica.</b> Le schede indicano per ogni KPI la fonte, la data del dato e se il valore è
+      una stima. Quando un dato ufficiale non è disponibile, la scheda lo dichiara esplicitamente:
+      nessun numero è inventato.</p>
+    </footer>
+  </div>
+
+  <!-- Dati: un file per Regione -->
+  <script src="data/piemonte.js"></script>
+  <script src="data/valledaosta.js"></script>
+  <script src="data/lombardia.js"></script>
+  <script src="data/trentinoaltoadige.js"></script>
+  <script src="data/veneto.js"></script>
+  <script src="data/friuliveneziagiulia.js"></script>
+  <script src="data/liguria.js"></script>
+  <script src="data/emiliaromagna.js"></script>
+  <script src="data/toscana.js"></script>
+  <script src="data/umbria.js"></script>
+  <script src="data/marche.js"></script>
+  <script src="data/lazio.js"></script>
+  <script src="data/abruzzo.js"></script>
+  <script src="data/molise.js"></script>
+  <script src="data/campania.js"></script>
+  <script src="data/puglia.js"></script>
+  <script src="data/basilicata.js"></script>
+  <script src="data/calabria.js"></script>
+  <script src="data/sicilia.js"></script>
+  <script src="data/sardegna.js"></script>
+  <!-- Motore -->
+  <script src="assets/app.js"></script>
+</body>
+</html>
