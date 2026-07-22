@@ -42,6 +42,56 @@ function getRegioneKey() {
   return REGIONI[0].r;
 }
 
+/* ---------- scheda KPI condivisa ---------- */
+function kpiCardHtml(it, i, D) {
+  const badge = "<span class='badge " + esc(it.bCls) + "'>" + esc(it.badge) + "</span>";
+  const bar = "<div class='bar'><div class='bar-in' style='width:" +
+    Math.max(0, Math.min(100, it.barPct || 0)) + "%;background:" + esc(it.barCol || "var(--blue)") + "'></div></div>";
+  const delta = it.delta
+    ? "<div class='kpi-delta " + esc(it.deltaCls || "") + "'><span>" + esc(it.delta) + "</span><small>" + esc(it.deltaSub || "") + "</small></div>"
+    : "";
+  return "<article class='card' data-i='" + i + "'>" +
+    "<div class='card-top'><span class='card-area'>" + esc(it.area) + "</span>" + badge + "</div>" +
+    "<h3>" + esc(it.title) + "</h3>" +
+    "<p class='promise'>" + esc(it.promise) + "</p>" +
+    "<div class='kpi'><div class='kpi-main'><span class='kpi-cur'>" + esc(it.cur) + "</span>" +
+    "<span class='kpi-lbl'>" + esc(it.curLbl) + "</span></div>" + delta + "</div>" +
+    bar +
+    "<div class='card-detail'>" +
+    "<p><b>" + esc(D.ui.startLabel || "Punto di partenza") + ":</b> " + esc(it.base) + "</p>" +
+    "<p><b>" + esc(D.ui.noteLabel || "Nota") + ":</b> " + esc(it.note) + "</p>" +
+    "<p class='src'><b>" + esc(D.ui.sourceLabel || "Fonte") + ":</b> " +
+    "<a href='" + esc(it.url) + "' target='_blank' rel='noopener'>" + esc(it.src) + "</a> · " + esc(it.asof) + "</p>" +
+    "</div></article>";
+}
+
+/* ---------- dashboard nazionale in cima alla home (index.html) ---------- */
+function renderGovHome() {
+  const el = document.getElementById("gov");
+  if (!el || !window.DASH || !window.DASH.governo) return;
+  const D = window.DASH.governo;
+
+  let html = "<div class='gov-head'>" +
+    "<span class='gov-emoji'>" + esc(D.meta.stemma || "🇮🇹") + "</span>" +
+    "<div class='gov-head-txt'>" +
+    "<h2>" + esc(D.meta.nome) + "</h2>" +
+    "<p class='gov-sub'>" + esc(D.ui.sub) + "</p>" +
+    "<p class='gov-pres'>Presidente del Consiglio: <b>" + esc(D.meta.presidente) + "</b> · " + esc(D.meta.maggioranza) + "</p>" +
+    "</div></div>";
+
+  html += "<div class='grid gov-grid'>";
+  D.items.forEach((it, i) => { html += kpiCardHtml(it, i, D); });
+  html += "</div>";
+
+  el.innerHTML = html;
+  el.querySelectorAll(".card").forEach(c => {
+    c.addEventListener("click", e => {
+      if (e.target.closest("a")) return;
+      c.classList.toggle("open");
+    });
+  });
+}
+
 /* ---------- HUB (index.html) ---------- */
 function renderHub() {
   const hub = document.getElementById("hub");
@@ -207,6 +257,7 @@ function renderDash() {
 
 /* ---------- avvio ---------- */
 document.addEventListener("DOMContentLoaded", () => {
-  renderHub();   // attivo solo se esiste #hub (index.html)
-  renderDash();  // attivo solo se esiste #grid (regione.html)
+  renderGovHome(); // attivo solo se esiste #gov (index.html)
+  renderHub();     // attivo solo se esiste #hub (index.html)
+  renderDash();    // attivo solo se esiste #grid (regione.html)
 });
